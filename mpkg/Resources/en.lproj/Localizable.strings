@@ -1,0 +1,23 @@
+'docker_title' = 'Docker for Mac OS X';
+
+'choiceDockerCLI_title' = 'Docker CLI for Mac OS X';
+'choiceDockerCLI_msg' = 'Installs the the Docker for Mac OS X client into /usr/local/bin/';
+
+'choiceVBoxKEXTs_title' = 'Oracle VM VirtualBox Kernel Extensions';
+'choiceVBoxKEXTs_msg' = 'Installs the Oracle VM VirtualBox Kernel Extensions into /Library/Application Support/VirtualBox.';
+
+'choiceVBox_title' = 'Oracle VM VirtualBox';
+'choiceVBox_msg' = 'Installs the Oracle VM VirtualBox application into /Applications.';
+
+'choiceVBoxCLI_title' = 'Oracle VM VirtualBox Command Line Utilities';
+'choiceVBoxCLI_msg' = 'Installs the Oracle VM VirtualBox command line utilities into /usr/bin.';
+
+'RUNNING_VMS_TLE' = "Running VirtualBox VM's detected!";
+'RUNNING_VMS_MSG' = "The installer has detected running Virtual Machines. Please shutdown all running VirtualBox machines and then restart the installation.";
+
+'UNSUPPORTED_HW_MACHINE_TLE' = "Unsupported hardware architecture detected!";
+'UNSUPPORTED_HW_MACHINE_MSG' = "The installer has detected an unsupported architecture. VirtualBox only runs on the x86 and amd64 architectures.";
+
+'UNSUPPORTED_OS_TLE' = "Unsupported OS version detected!";
+'UNSUPPORTED_OS_MSG' = "The installer has detected an unsupported operation system. VirtualBox requires Mac OS X 10.6 or later.";
+

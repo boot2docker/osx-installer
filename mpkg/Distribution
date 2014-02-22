@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<installer-gui-script minSpecVersion="1">
+    <title>docker_title</title>
+    <options customize="allow" allow-external-scripts="yes" rootVolumeOnly="true" hostArchitectures="i386"/>
+    <domains enable_anywhere="false" enable_currentUserHome="false" enable_localSystem="true"/>
+    <background file="logo-docker_transparent.png" alignment="center" scaling="proportional"/>
+    <welcome file="Welcome.html" mime-type="text/html"/>
+    <choices-outline>
+        <line choice="choiceDockerCLI"/>
+    </choices-outline>
+    <choice id="choiceDockerCLI" title="choiceDockerCLI_title" description="choiceDockerCLI_msg" start_selected="true" start_enabled="false" start_visible="true">
+        <pkg-ref id="io.docker.pkg.docker"/>
+    </choice>
+    <pkg-ref id="io.docker.pkg.docker" auth="Root" version="%DOCKER_VERSION%" installKBytes="%DOCKER_INSTALL_KBYTES%">#docker.pkg</pkg-ref>
+    <pkg-ref id="io.docker.pkg.docker">
+        <bundle-version/>
+    </pkg-ref>
+    <product id="io.docker.mpkg.docker" version="0.0.1"/>
+</installer-gui-script>
