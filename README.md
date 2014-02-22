@@ -1,4 +1,4 @@
-osx-installer
+Docker for Mac OS X Installer
 =============
 
-Docker installer for Mac OS X
+![Imgur](http://i.imgur.com/3TlXLPt.png)
