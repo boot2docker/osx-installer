@@ -3,6 +3,9 @@
 'choiceDockerCLI_title' = 'Docker CLI for Mac OS X';
 'choiceDockerCLI_msg' = 'Installs the the Docker for Mac OS X client into /usr/local/bin/';
 
+'choiceBoot2DockerCLI_title' = 'boot2docker CLI for Mac OS X';
+'choiceBoot2DockerCLI_msg' = 'Installs the the boot2docker CLI into /usr/local/bin/';
+
 'choiceVBoxKEXTs_title' = 'Oracle VM VirtualBox Kernel Extensions';
 'choiceVBoxKEXTs_msg' = 'Installs the Oracle VM VirtualBox Kernel Extensions into /Library/Application Support/VirtualBox.';
 

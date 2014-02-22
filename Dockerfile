@@ -43,6 +43,22 @@ RUN cd /mpkg/docker.pkg && \
     cd .. && \
     rm -rf ./rootfs
 
+# boot2docker.pkg
+RUN cd /mpkg/boot2docker.pkg && \
+    mkdir ./rootfs && \
+    cd ./rootfs && \
+    curl -L -o boot2docker https://github.com/boot2docker/boot2docker/raw/master/boot2docker && \
+    chmod +x boot2docker && \
+    find . | cpio -o --format odc | gzip -c > ../Payload && \
+    mkbom . ../Bom && \
+    sed -i \
+        -e "s/%BOOT2DOCKER_NUMBER_OF_FILES%/`find . | wc -l`/g" \
+        -e "s/%BOOT2DOCKER_INSTALL_KBYTES%/`du -sk | cut -f1`/g" \
+        -e "s/%BOOT2DOCKER_VERSION%/0.0.1/g" \
+        ../PackageInfo /mpkg/Distribution && \
+    cd .. && \
+    rm -rf ./rootfs
+
 # Repackage back. Yes, --compression=none is mandatory.
 # or this won't install in OSX.
 RUN cd /mpkg && \
