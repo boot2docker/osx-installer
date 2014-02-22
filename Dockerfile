@@ -1,24 +1,29 @@
-# This is important since >lucid doesn't have xar
-FROM ubuntu:lucid
+FROM ubuntu:12.04
 MAINTAINER Steeve Morin "steeve.morin@gmail.com"
 
 ENV DOCKER_VERSION  0.8.1
 
 # make sure the package repository is up to date
-RUN echo "deb http://archive.ubuntu.com/ubuntu lucid main universe multiverse" > /etc/apt/sources.list
+RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe multiverse" > /etc/apt/sources.list
 RUN apt-get update
 
 
 RUN apt-get -y install  curl \
-                        xar \
+                        build-essential \
+                        libxml2-dev libssl-dev \
                         dmg2img \
-                        hfsplus hfsutils hfsprogs \
-                        build-essential
+                        hfsplus hfsutils hfsprogs
 
 
 # We need the bomutils to create the Mac OS X Bill of Materials (BOM) files.
 RUN curl -L https://github.com/steeve/bomutils/archive/master.tar.gz | tar xvz && \
     cd /bomutils-master && \
+    make && make install
+
+# Needed to pack/unpack the .pkg files
+RUN curl -L https://github.com/downloads/mackyle/xar/xar-1.6.1.tar.gz | tar xvz && \
+    cd xar-1.6.1 && \
+    ./configure && \
     make && make install
 
 ADD mpkg /mpkg
