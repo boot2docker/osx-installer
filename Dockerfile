@@ -11,7 +11,7 @@ RUN apt-get update
 RUN apt-get -y install  curl \
                         build-essential \
                         libxml2-dev libssl-dev \
-                        dmg2img \
+                        p7zip-full \
                         hfsplus hfsutils hfsprogs
 
 
@@ -27,6 +27,26 @@ RUN curl -L https://github.com/downloads/mackyle/xar/xar-1.6.1.tar.gz | tar xvz 
     make && make install
 
 ADD mpkg /mpkg
+
+# Downloading VirtualBox and extract the .pkg
+RUN mkdir -p /mpkg/vbox && \
+    cd /mpkg/vbox && \
+    curl -L -o vbox.dmg http://download.virtualbox.org/virtualbox/4.3.8/VirtualBox-4.3.8-92456-OSX.dmg && \
+    7z x vbox.dmg -ir'!*.hfs' && \
+    7z x `find . -name '*.hfs'` -ir'!*.pkg' && \
+    mv VirtualBox/VirtualBox.pkg . && \
+    rm -rf vbox.dmg && \
+    rm -rf `find . -name '*.hfs'`
+
+# Extract the .pkg files
+RUN cd /mpkg/vbox && \
+    mv VirtualBox.pkg /tmp && \
+    xar -xf /tmp/VirtualBox.pkg && \
+    rm -rf /tmp/VirtualBox.pkg
+
+RUN cd /mpkg/vbox && \
+    mv *.pkg .. && \
+    rm -rf vbox
 
 # docker.pkg
 RUN cd /mpkg/docker.pkg && \
