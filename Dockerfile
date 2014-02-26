@@ -79,7 +79,15 @@ RUN cd /mpkg/boot2docker.pkg && \
     cd .. && \
     rm -rf ./rootfs
 
+# Make DMG rootfs
+RUN mkdir -p /dmg
+
 # Repackage back. Yes, --compression=none is mandatory.
 # or this won't install in OSX.
 RUN cd /mpkg && \
-    xar -c --compression=none -f ../Docker.pkg .
+    xar -c --compression=none -f /dmg/Docker.pkg .
+
+ADD makedmg.sh /
+RUN chmod +x makedmg.sh
+
+CMD ["/makedmg.sh", "docker.dmg", "Docker", "/dmg"]
