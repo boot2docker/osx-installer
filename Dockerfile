@@ -1,7 +1,7 @@
 FROM ubuntu:12.04
 MAINTAINER Steeve Morin "steeve.morin@gmail.com"
 
-ENV DOCKER_VERSION  0.8.1
+ENV DOCKER_VERSION  0.9.1
 
 # make sure the package repository is up to date
 RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe multiverse" > /etc/apt/sources.list
@@ -31,7 +31,7 @@ ADD mpkg /mpkg
 # Downloading VirtualBox and extract the .pkg
 RUN mkdir -p /mpkg/vbox && \
     cd /mpkg/vbox && \
-    curl -L -o vbox.dmg http://download.virtualbox.org/virtualbox/4.3.8/VirtualBox-4.3.8-92456-OSX.dmg && \
+    curl -L -o vbox.dmg http://download.virtualbox.org/virtualbox/4.3.10/VirtualBox-4.3.10-93012-OSX.dmg && \
     7z x vbox.dmg -ir'!*.hfs' && \
     7z x `find . -name '*.hfs'` -ir'!*.pkg' && \
     mv VirtualBox/VirtualBox.pkg . && \
