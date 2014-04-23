@@ -1,10 +1,11 @@
-FROM ubuntu:12.04
+FROM debian:wheezy
 MAINTAINER Steeve Morin "steeve.morin@gmail.com"
 
-ENV DOCKER_VERSION  0.9.1
+ENV DOCKER_VERSION  0.10.0
+ENV BOOT2DOCKER_CLI_VERSION 0.8.0
 
 # make sure the package repository is up to date
-RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe multiverse" > /etc/apt/sources.list
+#RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe multiverse" > /etc/apt/sources.list
 RUN apt-get update
 
 
@@ -67,14 +68,14 @@ RUN cd /mpkg/docker.pkg && \
 RUN cd /mpkg/boot2docker.pkg && \
     mkdir ./rootfs && \
     cd ./rootfs && \
-    curl -L -o boot2docker https://github.com/boot2docker/boot2docker/raw/master/boot2docker && \
+    curl -L -o boot2docker https://github.com/boot2docker/boot2docker-cli/releases/download/v${BOOT2DOCKER_CLI_VERSION}/boot2docker-cli-v${BOOT2DOCKER_CLI_VERSION}-darwin-amd64 && \
     chmod +x boot2docker && \
     find . | cpio -o --format odc | gzip -c > ../Payload && \
     mkbom . ../Bom && \
     sed -i \
         -e "s/%BOOT2DOCKER_NUMBER_OF_FILES%/`find . | wc -l`/g" \
         -e "s/%BOOT2DOCKER_INSTALL_KBYTES%/`du -sk | cut -f1`/g" \
-        -e "s/%BOOT2DOCKER_VERSION%/0.0.1/g" \
+        -e "s/%BOOT2DOCKER_VERSION%/$BOOT2DOCKER_CLI_VERSION/g" \
         ../PackageInfo /mpkg/Distribution && \
     cd .. && \
     rm -rf ./rootfs
