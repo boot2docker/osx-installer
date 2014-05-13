@@ -1,10 +1,9 @@
-FROM ubuntu:12.04
+FROM debian:jessie
 MAINTAINER Steeve Morin "steeve.morin@gmail.com"
 
-ENV DOCKER_VERSION  0.9.1
+ENV DOCKER_VERSION  0.11.1
 
 # make sure the package repository is up to date
-RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe multiverse" > /etc/apt/sources.list
 RUN apt-get update
 
 
@@ -12,7 +11,7 @@ RUN apt-get -y install  curl \
                         build-essential \
                         libxml2-dev libssl-dev \
                         p7zip-full \
-                        hfsplus hfsutils hfsprogs
+                        hfsplus hfsutils hfsprogs cpio
 
 
 # We need the bomutils to create the Mac OS X Bill of Materials (BOM) files.
