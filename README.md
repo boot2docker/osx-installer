@@ -9,8 +9,8 @@ How to build
 ============
 
 ```
-$ docker build -t osx-installer osx-installer/
-$ docker run --privileged -i -t -name build-osx-installer osx-installer
-$ docker cp build-osx-installer:/docker.dmg .
-$ docker rm build-osx-installer
+$ docker rm build-osx-installer;true &&\
+ docker build -t osx-installer . &&\
+ docker run --privileged -i -t -name build-osx-installer osx-installer &&\
+ docker cp build-osx-installer:/docker.dmg .
 ```
