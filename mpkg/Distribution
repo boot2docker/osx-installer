@@ -3,7 +3,7 @@
     <title>docker_title</title>
     <options customize="allow" allow-external-scripts="yes" rootVolumeOnly="true" hostArchitectures="i386"/>
     <domains enable_anywhere="false" enable_currentUserHome="false" enable_localSystem="true"/>
-    <background file="logo-docker_transparent.png" alignment="center" scaling="proportional"/>
+    <background file="boot2docker.png" alignment="bottomleft" scaling="none"/>
     <welcome file="Welcome.html" mime-type="text/html"/>
     <choices-outline>
         <line choice="choiceDockerCLI"/>
@@ -27,7 +27,7 @@
     <pkg-ref id="io.boot2docker.pkg.boot2docker">
         <bundle-version/>
     </pkg-ref>
-    <product id="io.docker.mpkg.docker" version="0.0.1"/>
+    <product id="io.docker.mpkg.docker" version="%INSTALLER_VERSION%"/>
 
     <!-- Manually imported VBox Stuff -->
     <installation-check script="checkPrerequisite()"/>

@@ -1,12 +1,8 @@
 FROM debian:wheezy
 MAINTAINER Steeve Morin "steeve.morin@gmail.com"
 
-ENV DOCKER_VERSION  0.11.1
-ENV BOOT2DOCKER_CLI_VERSION 0.9.0
-
 # make sure the package repository is up to date
 RUN apt-get update
-
 
 RUN apt-get -y install  curl \
                         build-essential \
@@ -26,6 +22,10 @@ RUN curl -L https://github.com/downloads/mackyle/xar/xar-1.6.1.tar.gz | tar xvz 
     make && make install
 
 ADD mpkg /mpkg
+
+ENV DOCKER_VERSION  0.11.1
+ENV BOOT2DOCKER_CLI_VERSION 0.9.2
+ENV INSTALLER_VERSION 0.2
 
 # Downloading VirtualBox and extract the .pkg
 RUN mkdir -p /mpkg/vbox && \
@@ -66,7 +66,7 @@ RUN cd /mpkg/docker.pkg && \
 RUN cd /mpkg/boot2docker.pkg && \
     mkdir ./rootfs && \
     cd ./rootfs && \
-    curl -L -o boot2docker https://github.com/boot2docker/boot2docker-cli/releases/download/v${BOOT2DOCKER_CLI_VERSION}/boot2docker-cli-v${BOOT2DOCKER_CLI_VERSION}-darwin-amd64 && \
+    curl -L -o boot2docker https://github.com/boot2docker/boot2docker-cli/releases/download/v${BOOT2DOCKER_CLI_VERSION}/boot2docker-v${BOOT2DOCKER_CLI_VERSION}-darwin-amd64 && \
     chmod +x boot2docker && \
     find . | cpio -o --format odc | gzip -c > ../Payload && \
     mkbom . ../Bom && \
