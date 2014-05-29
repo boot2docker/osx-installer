@@ -6,6 +6,9 @@
 'choiceBoot2DockerCLI_title' = 'Boot2docker management tool for Mac OS X';
 'choiceBoot2DockerCLI_msg' = 'Installs the boot2docker management tool into /usr/local/bin/';
 
+'choiceBoot2DockerAPP_title' = 'Boot2docker Quick-start app for Mac OS X';
+'choiceBoot2DockerAPP_msg' = 'Installs the boot2docker Quick-start app into /Applications/';
+
 'choiceVBoxKEXTs_title' = 'Oracle VM VirtualBox Kernel Extensions';
 'choiceVBoxKEXTs_msg' = 'Installs the Oracle VM VirtualBox Kernel Extensions into /Library/Application Support/VirtualBox.';
 
