@@ -21,17 +21,18 @@ RUN curl -L https://github.com/downloads/mackyle/xar/xar-1.6.1.tar.gz | tar xvz 
     ./configure && \
     make && make install
 
+RUN curl -L -o vbox.dmg http://download.virtualbox.org/virtualbox/4.3.10/VirtualBox-4.3.10-93012-OSX.dmg
+
 ADD mpkg /mpkg
 
 ENV DOCKER_VERSION  0.11.1
 ENV BOOT2DOCKER_CLI_VERSION 0.9.2
-ENV INSTALLER_VERSION 0.2
+ENV INSTALLER_VERSION 0.11.1
 
 # Downloading VirtualBox and extract the .pkg
 RUN mkdir -p /mpkg/vbox && \
     cd /mpkg/vbox && \
-    curl -L -o vbox.dmg http://download.virtualbox.org/virtualbox/4.3.10/VirtualBox-4.3.10-93012-OSX.dmg && \
-    7z x vbox.dmg -ir'!*.hfs' && \
+    7z x /vbox.dmg -ir'!*.hfs' && \
     7z x `find . -name '*.hfs'` -ir'!*.pkg' && \
     mv VirtualBox/VirtualBox.pkg . && \
     rm -rf vbox.dmg && \
@@ -77,6 +78,10 @@ RUN cd /mpkg/boot2docker.pkg && \
         ../PackageInfo /mpkg/Distribution && \
     cd .. && \
     rm -rf ./rootfs
+
+RUN sed -i \
+        -e "s/%INSTALLER_VERSION%/$INSTALLER_VERSION/g" \
+        mpkg/Resources/en.lproj/Welcome.html
 
 # Make DMG rootfs
 RUN mkdir -p /dmg
