@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pkg-info overwrite-permissions="true" relocatable="false" identifier="io.boot2docker.pkg.boot2dockerapp" postinstall-action="none" version="%BOOT2DOCKERAPP_VERSION%" format-version="2" generator-version="steeve's strong hands" install-location="/Applications/" auth="root">
+    <payload numberOfFiles="%BOOT2DOCKERAPP_NUMBER_OF_FILES%" installKBytes="%BOOT2DOCKERAPP_INSTALL_KBYTES%"/>
+    <bundle-version/>
+    <upgrade-bundle/>
+    <update-bundle/>
+    <atomic-update-bundle/>
+    <strict-identifier/>
+    <relocate/>
+</pkg-info>

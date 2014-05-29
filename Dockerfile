@@ -79,6 +79,21 @@ RUN cd /mpkg/boot2docker.pkg && \
     cd .. && \
     rm -rf ./rootfs
 
+# boot2dockerapp.pkg
+RUN cd /mpkg/boot2dockerapp.pkg && \
+    mkdir ./rootfs && \
+    cd ./rootfs && \
+    mv /mpkg/boot2docker.app . && \
+    find . | cpio -o --format odc | gzip -c > ../Payload && \
+    mkbom . ../Bom && \
+    sed -i \
+        -e "s/%BOOT2DOCKERAPP_NUMBER_OF_FILES%/`find . | wc -l`/g" \
+        -e "s/%BOOT2DOCKERAPP_INSTALL_KBYTES%/`du -sk | cut -f1`/g" \
+        -e "s/%BOOT2DOCKERAPP_VERSION%/$INSTALLER_VERSION/g" \
+        ../PackageInfo /mpkg/Distribution && \
+    cd .. && \
+    rm -rf ./rootfs
+
 RUN sed -i \
         -e "s/%INSTALLER_VERSION%/$INSTALLER_VERSION/g" \
         mpkg/Resources/en.lproj/Welcome.html
