@@ -21,13 +21,13 @@ RUN curl -L https://github.com/downloads/mackyle/xar/xar-1.6.1.tar.gz | tar xvz 
     ./configure && \
     make && make install
 
-RUN curl -L -o vbox.dmg http://download.virtualbox.org/virtualbox/4.3.10/VirtualBox-4.3.10-93012-OSX.dmg
+RUN curl -L -o vbox.dmg http://download.virtualbox.org/virtualbox/4.3.12/VirtualBox-4.3.12-93733-OSX.dmg
 
 ADD mpkg /mpkg
 
-ENV DOCKER_VERSION  0.11.1
-ENV BOOT2DOCKER_CLI_VERSION 0.11.1-pre1
-ENV INSTALLER_VERSION 0.11.1-pre1
+ENV DOCKER_VERSION  0.12.0
+ENV BOOT2DOCKER_CLI_VERSION 0.12.0
+ENV INSTALLER_VERSION 0.12.0
 
 # Downloading VirtualBox and extract the .pkg
 RUN mkdir -p /mpkg/vbox && \
