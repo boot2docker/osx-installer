@@ -1,10 +1,10 @@
-'docker_title' = 'Docker for Mac OS X';
+'docker_title' = 'Boot2Docker for Mac OS X';
 
 'choiceDockerCLI_title' = 'Docker client for Mac OS X';
 'choiceDockerCLI_msg' = 'Installs the Docker for Mac OS X client into /usr/local/bin/';
 
-'choiceBoot2DockerCLI_title' = 'Boot2docker management tool for Mac OS X';
-'choiceBoot2DockerCLI_msg' = 'Installs the boot2docker management tool into /usr/local/bin/';
+'choiceBoot2DockerCLI_title' = 'Boot2Docker management tool for Mac OS X';
+'choiceBoot2DockerCLI_msg' = 'Installs the Boot2Docker management tool into /usr/local/bin/';
 
 'choiceBoot2DockerAPP_title' = 'Boot2docker Quick-start app for Mac OS X';
 'choiceBoot2DockerAPP_msg' = 'Installs the boot2docker Quick-start app into /Applications/';
