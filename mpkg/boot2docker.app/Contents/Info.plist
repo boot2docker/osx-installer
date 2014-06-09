@@ -15,11 +15,11 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>boot2docker</string>
+	<string>Boot2Docker Start</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>0.12.0</string>
 	<key>CFBundleSignature</key>
 	<string>aplt</string>
 	<key>LSMinimumSystemVersionByArchitecture</key>
@@ -30,7 +30,7 @@
 	<key>LSRequiresCarbon</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string></string>
+	<string>Docker Inc</string>
 	<key>WindowState</key>
 	<dict>
 		<key>dividerCollapsed</key>
@@ -42,7 +42,7 @@
 		<key>positionOfDivider</key>
 		<real>441</real>
 		<key>savedFrame</key>
-		<string>616 243 1136 765 0 0 1920 1058 </string>
+		<string>375 241 942 765 0 0 1920 1058 </string>
 		<key>selectedTabView</key>
 		<string>event log</string>
 	</dict>

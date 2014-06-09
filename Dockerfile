@@ -27,6 +27,7 @@ ADD mpkg /mpkg
 
 ENV DOCKER_VERSION  0.12.0
 ENV BOOT2DOCKER_CLI_VERSION 0.12.0
+ENV BOOT2DOCKER_ISO_VERSION 0.12.0
 ENV INSTALLER_VERSION 0.12.0
 
 # Downloading VirtualBox and extract the .pkg
@@ -79,6 +80,21 @@ RUN cd /mpkg/boot2docker.pkg && \
     cd .. && \
     rm -rf ./rootfs
 
+# boot2dockeriso.pkg
+RUN cd /mpkg/boot2dockeriso.pkg && \
+    mkdir ./rootfs && \
+    cd ./rootfs && \
+    curl -L -o boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v${BOOT2DOCKER_CLI_VERSION}/boot2docker.iso && \
+    find . | cpio -o --format odc | gzip -c > ../Payload && \
+    mkbom . ../Bom && \
+    sed -i \
+        -e "s/%BOOT2DOCKER_ISO_NUMBER_OF_FILES%/`find . | wc -l`/g" \
+        -e "s/%BOOT2DOCKER_ISO_INSTALL_KBYTES%/`du -sk | cut -f1`/g" \
+        -e "s/%BOOT2DOCKER_ISO_VERSION%/$BOOT2DOCKER_ISO_VERSION/g" \
+        ../PackageInfo /mpkg/Distribution && \
+    cd .. && \
+    rm -rf ./rootfs
+
 # boot2dockerapp.pkg
 RUN cd /mpkg/boot2dockerapp.pkg && \
     mkdir ./rootfs && \
@@ -97,6 +113,9 @@ RUN cd /mpkg/boot2dockerapp.pkg && \
 RUN sed -i \
         -e "s/%INSTALLER_VERSION%/$INSTALLER_VERSION/g" \
         mpkg/Resources/en.lproj/Welcome.html
+RUN sed -i \
+        -e "s/%INSTALLER_VERSION%/$INSTALLER_VERSION/g" \
+        /mpkg/Distribution
 
 # Make DMG rootfs
 RUN mkdir -p /dmg
