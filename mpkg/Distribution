@@ -5,6 +5,7 @@
     <domains enable_anywhere="false" enable_currentUserHome="false" enable_localSystem="true"/>
     <background file="boot2docker.png" alignment="bottomleft" scaling="none"/>
     <welcome file="Welcome.html" mime-type="text/html"/>
+    <conclusion file="Installed.html" mime-type="text/html"/>
     <choices-outline>
         <line choice="choiceDockerCLI"/>
         <line choice="choiceBoot2DockerCLI"/>

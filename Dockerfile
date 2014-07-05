@@ -115,6 +115,9 @@ RUN sed -i \
         mpkg/Resources/en.lproj/Welcome.html
 RUN sed -i \
         -e "s/%INSTALLER_VERSION%/$INSTALLER_VERSION/g" \
+        mpkg/Resources/en.lproj/Installed.html
+RUN sed -i \
+        -e "s/%INSTALLER_VERSION%/$INSTALLER_VERSION/g" \
         /mpkg/Distribution
 
 # Make DMG rootfs
