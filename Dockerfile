@@ -25,10 +25,10 @@ RUN curl -L -o vbox.dmg http://download.virtualbox.org/virtualbox/4.3.12/Virtual
 
 ADD mpkg /mpkg
 
-ENV DOCKER_VERSION  1.0.1
-ENV BOOT2DOCKER_CLI_VERSION 1.0.1
-ENV BOOT2DOCKER_ISO_VERSION 1.0.1
-ENV INSTALLER_VERSION 1.0.1
+ENV DOCKER_VERSION  1.1.0
+ENV BOOT2DOCKER_CLI_VERSION 1.1.0
+ENV BOOT2DOCKER_ISO_VERSION 1.1.0
+ENV INSTALLER_VERSION 1.1.0
 
 # Downloading VirtualBox and extract the .pkg
 RUN mkdir -p /mpkg/vbox && \
@@ -113,6 +113,9 @@ RUN cd /mpkg/boot2dockerapp.pkg && \
 RUN sed -i \
         -e "s/%INSTALLER_VERSION%/$INSTALLER_VERSION/g" \
         mpkg/Resources/en.lproj/Welcome.html
+RUN sed -i \
+        -e "s/%INSTALLER_VERSION%/$INSTALLER_VERSION/g" \
+        mpkg/Resources/en.lproj/Installed.html
 RUN sed -i \
         -e "s/%INSTALLER_VERSION%/$INSTALLER_VERSION/g" \
         /mpkg/Distribution
