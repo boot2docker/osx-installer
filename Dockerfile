@@ -25,10 +25,10 @@ RUN curl -L -o vbox.dmg http://download.virtualbox.org/virtualbox/4.3.12/Virtual
 
 ADD mpkg /mpkg
 
-ENV DOCKER_VERSION  1.1.1
-ENV BOOT2DOCKER_CLI_VERSION 1.1.1
-ENV BOOT2DOCKER_ISO_VERSION 1.1.1
-ENV INSTALLER_VERSION 1.1.1
+ENV DOCKER_VERSION  1.1.2
+ENV BOOT2DOCKER_CLI_VERSION 1.1.2
+ENV BOOT2DOCKER_ISO_VERSION 1.1.2
+ENV INSTALLER_VERSION 1.1.2
 
 # Downloading VirtualBox and extract the .pkg
 RUN mkdir -p /mpkg/vbox && \
