@@ -9,6 +9,6 @@ How to build
 ```
 $ docker rm build-osx-installer;true &&\
  docker build -t osx-installer . &&\
- docker run --privileged -i -t -name build-osx-installer osx-installer &&\
+ docker run --privileged -i -t --name build-osx-installer osx-installer &&\
  docker cp build-osx-installer:/dmg/Docker.pkg .
 ```
