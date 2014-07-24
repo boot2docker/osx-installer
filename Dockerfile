@@ -27,7 +27,7 @@ ADD mpkg /mpkg
 
 ENV DOCKER_VERSION  1.1.2
 ENV BOOT2DOCKER_CLI_VERSION 1.1.2
-ENV BOOT2DOCKER_ISO_VERSION 1.1.2
+ENV BOOT2DOCKER_ISO_VERSION .1.1.2
 ENV INSTALLER_VERSION 1.1.2
 
 # Downloading VirtualBox and extract the .pkg
@@ -84,7 +84,7 @@ RUN cd /mpkg/boot2docker.pkg && \
 RUN cd /mpkg/boot2dockeriso.pkg && \
     mkdir ./rootfs && \
     cd ./rootfs && \
-    curl -L -o boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v${BOOT2DOCKER_CLI_VERSION}/boot2docker.iso && \
+    curl -L -o boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v${BOOT2DOCKER_ISO_VERSION}/boot2docker.iso && \
     find . | cpio -o --format odc | gzip -c > ../Payload && \
     mkbom . ../Bom && \
     sed -i \
