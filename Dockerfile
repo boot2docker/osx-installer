@@ -23,14 +23,22 @@ RUN curl -L https://github.com/downloads/mackyle/xar/xar-1.6.1.tar.gz | tar xvz 
 
 RUN curl -L -o vbox.dmg http://download.virtualbox.org/virtualbox/4.3.12/VirtualBox-4.3.12-93733-OSX.dmg
 
-ADD mpkg /mpkg
+# Download the Docker parts
 
 ENV DOCKER_VERSION  1.1.2
 ENV BOOT2DOCKER_CLI_VERSION 1.1.2
 ENV BOOT2DOCKER_ISO_VERSION .1.1.2
 ENV INSTALLER_VERSION 1.1.2
 
-# Downloading VirtualBox and extract the .pkg
+RUN curl -L -o /docker.tgz http://get.docker.io/builds/Darwin/x86_64/docker-$DOCKER_VERSION.tgz
+RUN curl -L -o /boot2docker https://github.com/boot2docker/boot2docker-cli/releases/download/v${BOOT2DOCKER_CLI_VERSION}/boot2docker-v${BOOT2DOCKER_CLI_VERSION}-darwin-amd64
+RUN	curl -L -o /boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v${BOOT2DOCKER_ISO_VERSION}/boot2docker.iso
+
+# Start building package
+
+ADD mpkg /mpkg
+
+#  Extract the VirtualBox .pkg
 RUN mkdir -p /mpkg/vbox && \
     cd /mpkg/vbox && \
     7z x /vbox.dmg -ir'!*.hfs' && \
@@ -53,7 +61,7 @@ RUN cd /mpkg/vbox && \
 RUN cd /mpkg/docker.pkg && \
     mkdir ./rootfs && \
     cd rootfs && \
-    curl -L http://get.docker.io/builds/Darwin/x86_64/docker-$DOCKER_VERSION.tgz | tar xvz && \
+    cat /docker.tgz | tar xvz && \
     find . | cpio -o --format odc | gzip -c > ../Payload && \
     mkbom . ../Bom && \
     sed -i \
@@ -68,7 +76,7 @@ RUN cd /mpkg/docker.pkg && \
 RUN cd /mpkg/boot2docker.pkg && \
     mkdir ./rootfs && \
     cd ./rootfs && \
-    curl -L -o boot2docker https://github.com/boot2docker/boot2docker-cli/releases/download/v${BOOT2DOCKER_CLI_VERSION}/boot2docker-v${BOOT2DOCKER_CLI_VERSION}-darwin-amd64 && \
+    cp /boot2docker . && \
     chmod +x boot2docker && \
     find . | cpio -o --format odc | gzip -c > ../Payload && \
     mkbom . ../Bom && \
@@ -84,7 +92,7 @@ RUN cd /mpkg/boot2docker.pkg && \
 RUN cd /mpkg/boot2dockeriso.pkg && \
     mkdir ./rootfs && \
     cd ./rootfs && \
-    curl -L -o boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v${BOOT2DOCKER_ISO_VERSION}/boot2docker.iso && \
+    cp /boot2docker.iso . && \
     find . | cpio -o --format odc | gzip -c > ../Payload && \
     mkbom . ../Bom && \
     sed -i \
