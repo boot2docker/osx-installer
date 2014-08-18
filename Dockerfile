@@ -21,7 +21,8 @@ RUN curl -L https://github.com/downloads/mackyle/xar/xar-1.6.1.tar.gz | tar xvz 
     ./configure && \
     make && make install
 
-RUN curl -L -o vbox.dmg http://download.virtualbox.org/virtualbox/4.3.12/VirtualBox-4.3.12-93733-OSX.dmg
+ENV VBOX_VERSION 4.3.14
+RUN curl -L -o vbox.dmg http://download.virtualbox.org/virtualbox/$VBOX_VERSION/VirtualBox-$VBOX_VERSION-95030-OSX.dmg
 
 # Download the Docker parts
 
@@ -126,7 +127,13 @@ RUN sed -i \
         mpkg/Resources/en.lproj/Installed.html
 RUN sed -i \
         -e "s/%INSTALLER_VERSION%/$INSTALLER_VERSION/g" \
-        /mpkg/Distribution
+        /mpkg/Distribution && \
+		sed -i \
+        -e "s/%VBOX_VERSION%/$VBOX_VERSION/g" \
+        /mpkg/Distribution && \
+		sed -i \
+        -e "s/%VBOX_VERSION%/$VBOX_VERSION/g" \
+        mpkg/Resources/en.lproj/Localizable.strings
 
 # Make DMG rootfs
 RUN mkdir -p /dmg

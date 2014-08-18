@@ -12,13 +12,13 @@
 'choiceBoot2DockerAPP_title' = 'Boot2docker Quick-start applet for Mac OS X';
 'choiceBoot2DockerAPP_msg' = 'Installs the boot2docker Quick-start applet into /Applications/';
 
-'choiceVBoxKEXTs_title' = 'Oracle VM VirtualBox Kernel Extensions';
+'choiceVBoxKEXTs_title' = 'Oracle VM VirtualBox Kernel Extensions %VBOX_VERSION%';
 'choiceVBoxKEXTs_msg' = 'Installs the Oracle VM VirtualBox Kernel Extensions into /Library/Application Support/VirtualBox.';
 
-'choiceVBox_title' = 'Oracle VM VirtualBox';
+'choiceVBox_title' = 'Oracle VM VirtualBox %VBOX_VERSION%';
 'choiceVBox_msg' = 'Installs the Oracle VM VirtualBox application into /Applications.';
 
-'choiceVBoxCLI_title' = 'Oracle VM VirtualBox Command Line Utilities';
+'choiceVBoxCLI_title' = 'Oracle VM VirtualBox Command Line Utilities %VBOX_VERSION%';
 'choiceVBoxCLI_msg' = 'Installs the Oracle VM VirtualBox command line utilities into /usr/bin.';
 
 'RUNNING_VMS_TLE' = "Running VirtualBox detected!";
