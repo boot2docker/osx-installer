@@ -104,6 +104,23 @@ RUN cd /mpkg/boot2dockeriso.pkg && \
     cd .. && \
     rm -rf ./rootfs
 
+ADD /mpkg/boot2dockerutils.pkg/start.sh /
+# boot2dockerutils.pkg
+RUN cd /mpkg/boot2dockerutils.pkg && \
+    mkdir ./rootfs && \
+    cd ./rootfs && \
+    cp /start.sh . && \
+    chmod +x start.sh && \
+    find . | cpio -o --format odc | gzip -c > ../Payload && \
+    mkbom . ../Bom && \
+    sed -i \
+        -e "s/%BOOT2DOCKER_NUMBER_OF_FILES%/`find . | wc -l`/g" \
+        -e "s/%BOOT2DOCKER_INSTALL_KBYTES%/`du -sk | cut -f1`/g" \
+        -e "s/%BOOT2DOCKER_VERSION%/$BOOT2DOCKER_CLI_VERSION/g" \
+        ../PackageInfo /mpkg/Distribution && \
+    cd .. && \
+    rm -rf ./rootfs
+
 # boot2dockerapp.pkg
 RUN cd /mpkg/boot2dockerapp.pkg && \
     mkdir ./rootfs && \

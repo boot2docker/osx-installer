@@ -12,6 +12,9 @@
 'choiceBoot2DockerAPP_title' = 'Boot2docker Quick-start applet for Mac OS X';
 'choiceBoot2DockerAPP_msg' = 'Installs the boot2docker Quick-start applet into /Applications/';
 
+'choiceBoot2DockerUTILS_title' = 'Boot2Docker util scripts';
+'choiceBoot2DockerUTILS_msg' = 'Installs the scripts used by boot2docker into /usr/local/share/';
+
 'choiceVBoxKEXTs_title' = 'Oracle VM VirtualBox Kernel Extensions %VBOX_VERSION%';
 'choiceVBoxKEXTs_msg' = 'Installs the Oracle VM VirtualBox Kernel Extensions into /Library/Application Support/VirtualBox.';
 
