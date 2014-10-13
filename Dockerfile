@@ -26,10 +26,10 @@ RUN curl -L -o vbox.dmg http://download.virtualbox.org/virtualbox/$VBOX_VERSION/
 
 # Download the Docker parts
 
-ENV DOCKER_VERSION  1.2.0
-ENV BOOT2DOCKER_CLI_VERSION 1.2.0
-ENV BOOT2DOCKER_ISO_VERSION 1.2.0
-ENV INSTALLER_VERSION 1.2.0
+ENV DOCKER_VERSION  1.3.0
+ENV BOOT2DOCKER_CLI_VERSION 1.3.0
+ENV BOOT2DOCKER_ISO_VERSION 1.3.0
+ENV INSTALLER_VERSION 1.3.0
 
 RUN curl -L -o /docker.tgz http://get.docker.io/builds/Darwin/x86_64/docker-$DOCKER_VERSION.tgz
 RUN curl -L -o /boot2docker https://github.com/boot2docker/boot2docker-cli/releases/download/v${BOOT2DOCKER_CLI_VERSION}/boot2docker-v${BOOT2DOCKER_CLI_VERSION}-darwin-amd64
