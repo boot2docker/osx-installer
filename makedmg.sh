@@ -16,7 +16,7 @@ else
     TITLE=$2
     CONTENTDIR=$3
     FILESIZE=$(du -sm "${CONTENTDIR}" | cut -f1)
-    FILESIZE=$(("${FILESIZE}" + 5))
+    FILESIZE=$((${FILESIZE} + 5))
     USER=$(whoami)
     TMPDIR="/tmp/dmgdir"
 
