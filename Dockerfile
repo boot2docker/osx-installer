@@ -21,8 +21,8 @@ RUN curl -L https://github.com/downloads/mackyle/xar/xar-1.6.1.tar.gz | tar xvz 
     ./configure && \
     make && make install
 
-ENV VBOX_VERSION 4.3.14
-RUN curl -L -o vbox.dmg http://download.virtualbox.org/virtualbox/$VBOX_VERSION/VirtualBox-$VBOX_VERSION-95030-OSX.dmg
+ENV VBOX_VERSION 4.3.18
+RUN curl -L -o vbox.dmg http://download.virtualbox.org/virtualbox/$VBOX_VERSION/VirtualBox-$VBOX_VERSION-96516-OSX.dmg
 
 # Download the Docker parts
 
