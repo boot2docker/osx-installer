@@ -3,13 +3,13 @@
 # Uninstall Script
 
 if [ "$(which boot2docker)" == "" ]; then
-    echo "boot2docker does not exist on your machine!"
-    exit 1
+	echo "boot2docker does not exist on your machine!"
+	exit 1
 fi
 
 if [ "${USER}" != "root" ]; then
-    echo "$0 must be run as root!"
-    exit 2
+	echo "$0 must be run as root!"
+	exit 2
 fi
 
 echo "Stopping boot2docker processes..."
