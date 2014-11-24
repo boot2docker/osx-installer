@@ -25,7 +25,7 @@ RUN curl -sSL -o /vbox.dmg http://download.virtualbox.org/virtualbox/$VBOX_VERSI
 
 # Download the Docker parts
 
-ENV DOCKER_VERSION 1.3.1
+ENV DOCKER_VERSION 1.3.2
 RUN curl -sSL -o /docker.tgz https://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION.tgz
 
 ENV BOOT2DOCKER_CLI_VERSION ${DOCKER_VERSION}
