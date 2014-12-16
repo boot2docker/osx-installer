@@ -21,7 +21,8 @@ RUN curl -sSL https://github.com/mackyle/xar/archive/xar-1.6.1.tar.gz | tar xvz 
 ENV VBOX_VERSION 4.3.18
 ENV VBOX_REV 96516
 
-RUN curl -sSL -o /vbox.dmg http://download.virtualbox.org/virtualbox/$VBOX_VERSION/VirtualBox-$VBOX_VERSION-$VBOX_REV-OSX.dmg
+RUN curl -sSL -o /vbox.dmg http://download.virtualbox.org/virtualbox/$VBOX_VERSION/VirtualBox-$VBOX_VERSION-$VBOX_REV-OSX.dmg \
+	&& echo "$(curl -sSL 'http://download.virtualbox.org/virtualbox/'"$VBOX_VERSION"'/SHA256SUMS' | awk '$2 ~ /-OSX.dmg$/ { print $1 }') */vbox.dmg" | sha256sum -c -
 
 # Download the Docker parts
 
