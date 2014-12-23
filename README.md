@@ -6,9 +6,4 @@ Installation [instructions](http://docs.docker.io/installation/mac/) available o
 How to build
 ============
 
-```
-$ docker rm build-osx-installer;true &&\
- docker build -t osx-installer . &&\
- docker run --privileged -i -t --name build-osx-installer osx-installer &&\
- docker cp build-osx-installer:/dmg/Docker.pkg .
-```
+Running `make` will produce a `Docker.pkg` installer.
