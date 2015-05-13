@@ -18,8 +18,8 @@ RUN curl -sSL https://github.com/mackyle/xar/archive/xar-1.6.1.tar.gz | tar xvz 
 	./autogen.sh && ./configure && \
 	make && make install
 
-ENV VBOX_VERSION 4.3.26
-ENV VBOX_REV 98988
+ENV VBOX_VERSION 4.3.28
+ENV VBOX_REV 100309
 
 RUN curl -sSL -o /vbox.dmg http://download.virtualbox.org/virtualbox/$VBOX_VERSION/VirtualBox-$VBOX_VERSION-$VBOX_REV-OSX.dmg \
 	&& echo "$(curl -sSL 'http://download.virtualbox.org/virtualbox/'"$VBOX_VERSION"'/SHA256SUMS' | awk '$2 ~ /-OSX.dmg$/ { print $1 }') */vbox.dmg" | sha256sum -c -
