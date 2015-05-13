@@ -8,12 +8,12 @@ RUN apt-get update && apt-get -y install \
 
 # We need the bomutils to create the Mac OS X Bill of Materials (BOM) files.
 # https://github.com/hogliux/bomutils
-RUN curl -sSL https://github.com/hogliux/bomutils/archive/0.2.tar.gz | tar xvz && \
+RUN curl -fsSL https://github.com/hogliux/bomutils/archive/0.2.tar.gz | tar xvz && \
 	cd bomutils-* && \
 	make && make install
 
 # Needed to pack/unpack the .pkg files
-RUN curl -sSL https://github.com/mackyle/xar/archive/xar-1.6.1.tar.gz | tar xvz && \
+RUN curl -fsSL https://github.com/mackyle/xar/archive/xar-1.6.1.tar.gz | tar xvz && \
 	cd xar-*/xar && \
 	./autogen.sh && ./configure && \
 	make && make install
@@ -21,19 +21,19 @@ RUN curl -sSL https://github.com/mackyle/xar/archive/xar-1.6.1.tar.gz | tar xvz 
 ENV VBOX_VERSION 4.3.28
 ENV VBOX_REV 100309
 
-RUN curl -sSL -o /vbox.dmg http://download.virtualbox.org/virtualbox/$VBOX_VERSION/VirtualBox-$VBOX_VERSION-$VBOX_REV-OSX.dmg \
-	&& echo "$(curl -sSL 'http://download.virtualbox.org/virtualbox/'"$VBOX_VERSION"'/SHA256SUMS' | awk '$2 ~ /-OSX.dmg$/ { print $1 }') */vbox.dmg" | sha256sum -c -
+RUN curl -fsSL -o /vbox.dmg http://download.virtualbox.org/virtualbox/$VBOX_VERSION/VirtualBox-$VBOX_VERSION-$VBOX_REV-OSX.dmg \
+	&& echo "$(curl -fsSL 'http://download.virtualbox.org/virtualbox/'"$VBOX_VERSION"'/SHA256SUMS' | awk '$2 ~ /-OSX.dmg$/ { print $1 }') */vbox.dmg" | sha256sum -c -
 
 # Download the Docker parts
 
 ENV DOCKER_VERSION 1.6.2
-RUN curl -sSL -o /docker.tgz https://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION.tgz
+RUN curl -fsSL -o /docker.tgz https://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION.tgz
 
 ENV BOOT2DOCKER_CLI_VERSION ${DOCKER_VERSION}
-RUN curl -sSL -o /boot2docker https://github.com/boot2docker/boot2docker-cli/releases/download/v${BOOT2DOCKER_CLI_VERSION}/boot2docker-v${BOOT2DOCKER_CLI_VERSION}-darwin-amd64
+RUN curl -fsSL -o /boot2docker https://github.com/boot2docker/boot2docker-cli/releases/download/v${BOOT2DOCKER_CLI_VERSION}/boot2docker-v${BOOT2DOCKER_CLI_VERSION}-darwin-amd64
 
 ENV BOOT2DOCKER_ISO_VERSION $DOCKER_VERSION
-RUN curl -sSL -o /boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v${BOOT2DOCKER_ISO_VERSION}/boot2docker.iso
+RUN curl -fsSL -o /boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v${BOOT2DOCKER_ISO_VERSION}/boot2docker.iso
 
 ENV INSTALLER_VERSION $DOCKER_VERSION
 
