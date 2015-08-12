@@ -18,15 +18,15 @@ RUN curl -fsSL https://github.com/mackyle/xar/archive/xar-1.6.1.tar.gz | tar xvz
 	./autogen.sh && ./configure && \
 	make && make install
 
-ENV VBOX_VERSION 4.3.30
-ENV VBOX_REV 101610
+ENV VBOX_VERSION 5.0.0
+ENV VBOX_REV 101573
 
 RUN curl -fsSL -o /vbox.dmg http://download.virtualbox.org/virtualbox/$VBOX_VERSION/VirtualBox-$VBOX_VERSION-$VBOX_REV-OSX.dmg \
 	&& echo "$(curl -fsSL 'http://download.virtualbox.org/virtualbox/'"$VBOX_VERSION"'/SHA256SUMS' | awk '$2 ~ /-OSX.dmg$/ { print $1 }') */vbox.dmg" | sha256sum -c -
 
 # Download the Docker parts
 
-ENV DOCKER_VERSION 1.7.1
+ENV DOCKER_VERSION 1.8.0
 RUN curl -fsSL -o /docker.tgz https://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION.tgz
 
 ENV BOOT2DOCKER_CLI_VERSION ${DOCKER_VERSION}
