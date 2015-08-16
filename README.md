@@ -11,3 +11,8 @@ How to build
 ============
 
 Running `make` will produce a `Docker.pkg` installer.
+
+How to uninstall
+================
+
+curl https://raw.githubusercontent.com/boot2docker/osx-installer/master/uninstall.sh | sudo bash
