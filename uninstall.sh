@@ -29,7 +29,9 @@ echo "Removing boot2docker OSX files..."
 rm -f /private/var/db/receipts/io.boot2docker.*
 rm -f /private/var/db/receipts/io.boot2dockeriso.*
 
-echo "Removing Docker executable..."
-rm -f /usr/local/bin/docker
+echo "Removing Docker executable only if this is a file..."
+if [ -f /usr/local/bin/docker ];then
+   rm -f /usr/local/bin/docker
+fi
 
 echo "All Done!"
