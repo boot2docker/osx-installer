@@ -32,4 +32,6 @@ rm -f /private/var/db/receipts/io.boot2dockeriso.*
 echo "Removing Docker executable..."
 rm -f /usr/local/bin/docker
 
+unset ${!DOCKER*}
+
 echo "All Done!"
